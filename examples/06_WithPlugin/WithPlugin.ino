@@ -13,9 +13,9 @@
 IonConnectDevice ion;
 
 // Simple status plugin example
-class StatusPlugin : public IonPlugin {
+class StatusPlugin : public IonConnect::IonPlugin {
 private:
-    IonConnectBase* ion;
+    IonConnect::IonConnectBase* ion;
     uint32_t bootTime;
     uint32_t connectionCount;
     
