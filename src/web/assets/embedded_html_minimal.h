@@ -189,7 +189,10 @@ init();
 )rawliteral";
 
 // For compatibility - minimal mode uses inline JS
-const char EMBEDDED_JS_MINIMAL[] PROGMEM = "";
+const char EMBEDDED_JS[] PROGMEM = "";
+
+// Alias for main HTML
+#define EMBEDDED_HTML EMBEDDED_HTML_MINIMAL
 
 #endif // EMBEDDED_HTML_MINIMAL_H
 
