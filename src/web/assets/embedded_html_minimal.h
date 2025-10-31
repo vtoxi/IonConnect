@@ -188,7 +188,5 @@ init();
 </html>
 )rawliteral";
 
-} // namespace IonConnect
-
 #endif // EMBEDDED_HTML_MINIMAL_H
 
