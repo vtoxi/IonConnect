@@ -30,7 +30,7 @@ public:
         return "1.0.0";
     }
     
-    bool init(IonConnectBase* ionInstance) override {
+    bool init(IonConnect::IonConnectBase* ionInstance) override {
         ion = ionInstance;
         bootTime = millis();
         Serial.println("[Plugin] StatusMonitor initialized");
