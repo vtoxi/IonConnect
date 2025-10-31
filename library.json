@@ -1,7 +1,7 @@
 {
-  "name": "IonConnect",
-  "version": "1.0.2",
-  "description": "Modern async WiFi provisioning for ESP32/ESP8266 with captive portal, BLE, REST API, and plugin architecture",
+  "name": "IonConnect-ESP",
+  "version": "1.0.3",
+  "description": "Modern async WiFi provisioning for ESP32/ESP8266 with captive portal, BLE, REST API, and plugin architecture. Optimized for low-memory devices.",
   "keywords": [
     "wifi",
     "provisioning",
@@ -10,9 +10,13 @@
     "iot",
     "esp32",
     "esp8266",
+    "esp01",
     "async",
     "wifi-manager",
-    "configuration"
+    "configuration",
+    "low-memory",
+    "minimal-mode",
+    "lightweight"
   ],
   "repository": {
     "type": "git",
