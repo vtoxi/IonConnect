@@ -49,11 +49,16 @@ String AssetManager::loadHTML() {
 }
 
 String AssetManager::loadJS() {
+    #if ION_MINIMAL_MODE
+    // In minimal mode, JS is inline in HTML
+    return "";
+    #else
     String js = loadFromLittleFS("/ionconnect/script.js");
     if (js.isEmpty()) {
         js = loadFromPROGMEM("js");
     }
     return js;
+    #endif
 }
 
 bool AssetManager::hasLittleFSOverride(const char* filename) {
@@ -105,10 +110,13 @@ String AssetManager::loadFromPROGMEM(const char* assetType) {
     if (strcmp(assetType, "html") == 0) {
         ION_LOG("Loading embedded HTML");
         return String(FPSTR(EMBEDDED_HTML));
-    } else if (strcmp(assetType, "js") == 0) {
+    } 
+    #if !ION_MINIMAL_MODE
+    else if (strcmp(assetType, "js") == 0) {
         ION_LOG("Loading embedded JS");
         return String(FPSTR(EMBEDDED_JS));
     }
+    #endif
     
     return "";
 }
