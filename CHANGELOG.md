@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to IonConnect-ESP will be documented in this file.
+All notable changes to IonConnect will be documented in this file.
 
 ## [1.0.3] - 2025-10-31
 
@@ -25,7 +25,6 @@ All notable changes to IonConnect-ESP will be documented in this file.
   - `ION_JSON_BUFFER_SIZE` - Configure buffer sizes
 
 ### Changed
-- Library renamed: `IonConnect` → `IonConnect-ESP` (PlatformIO registry requirement)
 - All JSON allocations now use configurable constants
 - Conditional feature disabling in minimal mode (OTA, mDNS, diagnostics, BLE)
 
@@ -38,12 +37,6 @@ All notable changes to IonConnect-ESP will be documented in this file.
 - Startup time: 25% faster in minimal mode
 - Peak RAM usage: 50% reduction (40KB → 20KB)
 - Portal response: 200-300ms (minimal mode)
-
-## [1.0.2] - 2025-10-31
-
-### Changed
-- Library renamed for PlatformIO registry
-- Updated description to highlight low-memory support
 
 ## [1.0.1] - 2025-10-30
 

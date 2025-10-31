@@ -1,5 +1,5 @@
 {
-  "name": "IonConnect-ESP",
+  "name": "IonConnect",
   "version": "1.0.3",
   "description": "Modern async WiFi provisioning for ESP32/ESP8266 with captive portal, BLE, REST API, and plugin architecture. Optimized for low-memory devices.",
   "keywords": [
