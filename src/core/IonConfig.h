@@ -15,18 +15,31 @@ struct IonConfig {
     IPAddress apSubnet = IPAddress(255, 255, 255, 0);
     
     // Portal Behavior
+#if ION_MINIMAL_MODE
+    uint32_t portalTimeoutSeconds = 180;    // 3 minutes for minimal mode
+    bool autoStartPortal = true;            
+    bool blockingPortalMode = false;       
+#else
     uint32_t portalTimeoutSeconds = 300;    // 5 minutes default
-    bool autoStartPortal = true;            // Start portal if no credentials
-    bool blockingPortalMode = false;        // Allow app logic during portal
+    bool autoStartPortal = true;            
+    bool blockingPortalMode = false;       
+#endif
     
     // Connection Settings
+#if ION_MINIMAL_MODE
+    uint8_t maxReconnectAttempts = 3;       // Reduced for minimal mode
+    uint32_t reconnectDelayMs = 2000;       // Longer delay to save power
+    bool autoReconnect = true;
+    uint32_t connectionTimeoutMs = 15000;   // 15 seconds
+#else
     uint8_t maxReconnectAttempts = 5;
     uint32_t reconnectDelayMs = 1000;
     bool autoReconnect = true;
-    uint32_t connectionTimeoutMs = 10000;   // 10 seconds
+    uint32_t connectionTimeoutMs = 10000;   
+#endif
     
-    // Features
-    bool enableBLE = ION_ENABLE_BLE;        // ESP32 only
+    // Features (automatically set by ION_MINIMAL_MODE in IonTypes.h)
+    bool enableBLE = ION_ENABLE_BLE;        
     bool enableOTA = ION_ENABLE_OTA;
     bool enableMDNS = ION_ENABLE_MDNS;
     bool enableDiagnostics = ION_ENABLE_DIAGNOSTICS;
@@ -47,6 +60,21 @@ struct IonConfig {
     uint16_t webServerPort = 80;
     
     IonConfig() {}
+    
+    // Factory method for minimal ESP-01 configuration
+    static IonConfig minimal() {
+        IonConfig cfg;
+        cfg.portalTimeoutSeconds = 180;
+        cfg.maxReconnectAttempts = 3;
+        cfg.reconnectDelayMs = 2000;
+        cfg.connectionTimeoutMs = 15000;
+        cfg.enableBLE = false;
+        cfg.enableOTA = false;
+        cfg.enableMDNS = false;
+        cfg.enableDiagnostics = false;
+        cfg.enableCaptivePortal = true;  // Still useful for low-mem
+        return cfg;
+    }
 };
 
 } // namespace IonConnect

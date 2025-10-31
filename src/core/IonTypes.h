@@ -28,33 +28,85 @@
     #define ION_HAS_PSRAM 0
 #endif
 
+// Minimal mode for low-RAM devices (ESP-01, etc.)
+#ifndef ION_MINIMAL_MODE
+    #define ION_MINIMAL_MODE 0
+#endif
+
 // Optional features (can be disabled via build flags)
 #ifndef ION_ENABLE_BLE
-    #define ION_ENABLE_BLE ION_HAS_BLE
+    #if ION_MINIMAL_MODE
+        #define ION_ENABLE_BLE 0
+    #else
+        #define ION_ENABLE_BLE ION_HAS_BLE
+    #endif
 #endif
 
 #ifndef ION_ENABLE_OTA
-    #define ION_ENABLE_OTA 1
+    #if ION_MINIMAL_MODE
+        #define ION_ENABLE_OTA 0
+    #else
+        #define ION_ENABLE_OTA 1
+    #endif
 #endif
 
 #ifndef ION_ENABLE_DIAGNOSTICS
-    #define ION_ENABLE_DIAGNOSTICS 1
+    #if ION_MINIMAL_MODE
+        #define ION_ENABLE_DIAGNOSTICS 0
+    #else
+        #define ION_ENABLE_DIAGNOSTICS 1
+    #endif
 #endif
 
 #ifndef ION_ENABLE_PLUGINS
-    #define ION_ENABLE_PLUGINS 1
+    #if ION_MINIMAL_MODE
+        #define ION_ENABLE_PLUGINS 0
+    #else
+        #define ION_ENABLE_PLUGINS 1
+    #endif
 #endif
 
 #ifndef ION_ENABLE_MDNS
-    #define ION_ENABLE_MDNS 1
+    #if ION_MINIMAL_MODE
+        #define ION_ENABLE_MDNS 0
+    #else
+        #define ION_ENABLE_MDNS 1
+    #endif
 #endif
 
 #ifndef ION_USE_LITTLEFS
-    #define ION_USE_LITTLEFS 1
+    #if ION_MINIMAL_MODE
+        #define ION_USE_LITTLEFS 0
+    #else
+        #define ION_USE_LITTLEFS 1
+    #endif
+#endif
+
+#ifndef ION_USE_ASYNC_WEBSERVER
+    #if ION_MINIMAL_MODE
+        #define ION_USE_ASYNC_WEBSERVER 0  // Use basic ESP8266WebServer for minimal mode
+    #else
+        #define ION_USE_ASYNC_WEBSERVER 1
+    #endif
 #endif
 
 #ifndef ION_DEBUG
     #define ION_DEBUG 0
+#endif
+
+// Memory configuration based on mode
+#if ION_MINIMAL_MODE
+    #define ION_JSON_SCHEMA_SIZE 1024   // Reduced from 4096
+    #define ION_JSON_CONFIG_SIZE 512    // Reduced from 2048
+    #define ION_JSON_BUFFER_SIZE 512    // Reduced from 1024-2048
+    #define ION_MAX_NETWORKS 3          // Reduced from 10
+    #define ION_MAX_CONFIG_FIELDS 8     // Reduced from 32
+#else
+    #define ION_JSON_SCHEMA_SIZE 4096
+    #define ION_JSON_CONFIG_SIZE 2048
+    #define ION_JSON_BUFFER_SIZE 2048
+    #define ION_MAX_NETWORKS 10
+    #define ION_MAX_CONFIG_FIELDS 32
 #endif
 
 namespace IonConnect {

@@ -125,7 +125,7 @@ std::vector<WiFiCredential> WiFiConnectionCore::getSavedNetworks() {
 bool WiFiConnectionCore::saveNetworks() {
     if (!config) return false;
     
-    DynamicJsonDocument doc(2048);
+    DynamicJsonDocument doc(ION_JSON_BUFFER_SIZE);
     JsonArray arr = doc.to<JsonArray>();
     
     for (const auto& net : savedNetworks) {
@@ -148,7 +148,7 @@ bool WiFiConnectionCore::loadNetworks() {
     if (!config) return false;
     
     String json = config->get("saved_networks", "[]");
-    DynamicJsonDocument doc(2048);
+    DynamicJsonDocument doc(ION_JSON_BUFFER_SIZE);
     
     DeserializationError error = deserializeJson(doc, json);
     if (error) {

@@ -15,7 +15,7 @@ const char* ConfigManager::KEY_CONFIG_DATA = "config_data";
 const char* ConfigManager::KEY_SCHEMA_VERSION = "schema_ver";
 
 ConfigManager::ConfigManager(StorageProvider* storage) 
-    : storage(storage), schemaDoc(4096), configDoc(2048), schemaLoaded(false), configLoaded(false) {
+    : storage(storage), schemaDoc(ION_JSON_SCHEMA_SIZE), configDoc(ION_JSON_CONFIG_SIZE), schemaLoaded(false), configLoaded(false) {
 }
 
 ConfigManager::~ConfigManager() {
@@ -221,7 +221,7 @@ bool ConfigManager::isValid() {
 }
 
 String ConfigManager::exportJSON() {
-    DynamicJsonDocument exportDoc(2048);
+    DynamicJsonDocument exportDoc(ION_JSON_BUFFER_SIZE);
     JsonObject root = exportDoc.to<JsonObject>();
     
     root["version"] = "1.0";
@@ -234,7 +234,7 @@ String ConfigManager::exportJSON() {
 }
 
 bool ConfigManager::importJSON(const String& json) {
-    DynamicJsonDocument importDoc(2048);
+    DynamicJsonDocument importDoc(ION_JSON_BUFFER_SIZE);
     
     DeserializationError error = deserializeJson(importDoc, json);
     if (error) {
