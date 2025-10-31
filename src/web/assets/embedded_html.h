@@ -12,6 +12,7 @@ namespace IonConnect {
 #include "embedded_html_minimal.h"
 // Alias for compatibility
 static const char* const EMBEDDED_HTML = EMBEDDED_HTML_MINIMAL;
+static const char* const EMBEDDED_JS = EMBEDDED_JS_MINIMAL;
 
 #else
 
