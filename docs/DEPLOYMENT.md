@@ -76,7 +76,7 @@ This validates:
 cat library.json
 
 # Publish
-pio pkg publish --type=library --owner=yourusername
+pio pkg publish --type=library --owner=vtoxi
 
 # Or use the publish script
 ./scripts/publish.sh
@@ -123,7 +123,7 @@ The `.github/workflows/release.yml` workflow will:
    sentence=Modern WiFi provisioning for ESP32/ESP8266
    paragraph=...
    category=Communication
-   url=https://github.com/yourusername/IonConnect
+   url=https://github.com/vtoxi/IonConnect
    architectures=esp32,esp8266
    depends=ESPAsyncWebServer,ArduinoJson
    ```
@@ -138,7 +138,7 @@ The `.github/workflows/release.yml` workflow will:
 
 2. **Add Your Library**
    - Edit `repositories.txt`
-   - Add line: `https://github.com/yourusername/IonConnect`
+   - Add line: `https://github.com/vtoxi/IonConnect`
    - Commit change
 
 3. **Create Pull Request**
@@ -152,7 +152,7 @@ The `.github/workflows/release.yml` workflow will:
    - Title: "Add IonConnect library"
    - Body:
      ```
-     Repository: https://github.com/yourusername/IonConnect
+     Repository: https://github.com/vtoxi/IonConnect
      Description: Modern WiFi provisioning for ESP32/ESP8266
      ```
 
@@ -212,7 +212,7 @@ Once approved, your library will appear in:
    ```
 
 4. **Create GitHub Release**
-   - Go to: https://github.com/yourusername/IonConnect/releases/new
+   - Go to: https://github.com/vtoxi/IonConnect/releases/new
    - Tag: v1.0.0
    - Title: IonConnect v1.0.0
    - Description: Copy from CHANGELOG.md

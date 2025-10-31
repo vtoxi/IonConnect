@@ -131,5 +131,5 @@ This library is inspired by and improves upon WiFiManager by tzapu, bringing mod
 
 ---
 
-[1.0.0]: https://github.com/yourusername/IonConnect/releases/tag/v1.0.0
+[1.0.0]: https://github.com/vtoxi/IonConnect/releases/tag/v1.0.0
 

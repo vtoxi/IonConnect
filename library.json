@@ -16,17 +16,17 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/IonConnect.git"
+    "url": "https://github.com/vtoxi/IonConnect.git"
   },
   "authors": [
     {
       "name": "IonConnect Team",
       "email": "ionconnect@example.com",
-      "url": "https://github.com/yourusername"
+      "url": "https://github.com/vtoxi"
     }
   ],
   "license": "MIT",
-  "homepage": "https://github.com/yourusername/IonConnect",
+  "homepage": "https://github.com/vtoxi/IonConnect",
   "frameworks": ["arduino", "espidf"],
   "platforms": ["espressif32", "espressif8266"],
   "dependencies": [
