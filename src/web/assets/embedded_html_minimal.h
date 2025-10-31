@@ -188,9 +188,6 @@ init();
 </html>
 )rawliteral";
 
-// For compatibility - minimal mode uses inline JS
-const char EMBEDDED_JS[] PROGMEM = "";
-
 // Alias for main HTML
 #define EMBEDDED_HTML EMBEDDED_HTML_MINIMAL
 
