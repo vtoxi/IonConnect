@@ -90,7 +90,7 @@ jobs:
         env:
           PLATFORMIO_AUTH_TOKEN: ${{ secrets.PLATFORMIO_AUTH_TOKEN }}
         run: |
-          pio pkg publish --type=library
+          pio pkg publish --type=library --non-interactive
           echo "✓ Published to PlatformIO"
 
   notify-arduino:
