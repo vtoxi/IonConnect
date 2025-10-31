@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/platform-ESP32%20%7C%20ESP8266-blue)](https://github.com/vtoxi/IonConnect)
-[![Version](https://img.shields.io/badge/version-1.0.1-green)](https://github.com/vtoxi/IonConnect/releases)
+[![Version](https://img.shields.io/badge/version-1.0.2-green)](https://github.com/vtoxi/IonConnect/releases)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow.svg)](https://buymeacoffee.com/faisalshafi)
 
 IonConnect is a modern, async WiFi provisioning library inspired by [tzapu/WiFiManager](https://github.com/tzapu/WiFiManager), reimagined with contemporary async patterns, enhanced security, plugin architecture, and a beautiful live-updating UI.
