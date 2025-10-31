@@ -4,7 +4,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/platform-ESP32%20%7C%20ESP8266-blue)](https://github.com/vtoxi/IonConnect)
-[![Version](https://img.shields.io/badge/version-1.0.0-green)](https://github.com/vtoxi/IonConnect/releases)
+[![Version](https://img.shields.io/badge/version-1.0.1-green)](https://github.com/vtoxi/IonConnect/releases)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow.svg)](https://buymeacoffee.com/faisalshafi)
 
 IonConnect is a modern, async WiFi provisioning library inspired by [tzapu/WiFiManager](https://github.com/tzapu/WiFiManager), reimagined with contemporary async patterns, enhanced security, plugin architecture, and a beautiful live-updating UI.
 
@@ -245,9 +246,16 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - Built with [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer)
 - UI powered by [TailwindCSS](https://tailwindcss.com/)
 
-## 🌟 Star History
+## 💖 Support the Project
 
-If you find IonConnect useful, please consider giving it a star! ⭐
+If you find IonConnect useful, please consider supporting its development:
+
+- ⭐ **Star this repository** on GitHub
+- ☕ **[Buy me a coffee](https://buymeacoffee.com/faisalshafi)** to support continued development
+- 🐛 **Report issues** and help improve the library
+- 📢 **Share** with others who might find it useful
+
+Your support helps maintain and improve IonConnect for the entire community!
 
 ---
 

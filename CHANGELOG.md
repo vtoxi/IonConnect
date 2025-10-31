@@ -5,6 +5,15 @@ All notable changes to IonConnect will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-10-31
+
+### Added
+- Buy Me a Coffee badge and support section in README
+- Community support information
+
+### Changed
+- Updated README with donation link for project support
+
 ## [1.0.0] - 2025-10-31
 
 ### 🎉 Initial Release
@@ -131,5 +140,6 @@ This library is inspired by and improves upon WiFiManager by tzapu, bringing mod
 
 ---
 
+[1.0.1]: https://github.com/vtoxi/IonConnect/releases/tag/v1.0.1
 [1.0.0]: https://github.com/vtoxi/IonConnect/releases/tag/v1.0.0
 
