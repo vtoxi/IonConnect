@@ -62,6 +62,13 @@ for EXAMPLE in "${EXAMPLES[@]}"; do
     
     cd "examples/${EXAMPLE}"
     
+    # Create src directory and copy .ino file as main.cpp for PlatformIO
+    mkdir -p src
+    INO_FILE=$(find . -maxdepth 1 -name "*.ino" | head -1)
+    if [ -n "$INO_FILE" ]; then
+        cp "$INO_FILE" "src/main.cpp"
+    fi
+    
     # Create platformio.ini if it doesn't exist
     if [ ! -f "platformio.ini" ]; then
         cat > platformio.ini << 'EOF'
@@ -120,6 +127,9 @@ EOF
             echo ""
         fi
     done
+    
+    # Clean up src directory
+    rm -rf src
     
     cd ../..
     echo ""
