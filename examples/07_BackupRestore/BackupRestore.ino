@@ -15,6 +15,10 @@
 
 IonConnectDevice ion;
 
+// Forward declarations
+void printHelp();
+void processSerialCommand();
+
 // Serial commands
 void processSerialCommand() {
     if (Serial.available()) {
