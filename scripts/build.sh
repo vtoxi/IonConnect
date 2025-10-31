@@ -75,6 +75,9 @@ for EXAMPLE in "${EXAMPLES[@]}"; do
 [platformio]
 default_envs = esp32
 
+[env]
+lib_extra_dirs = ../..
+
 [env:esp32]
 platform = espressif32
 board = esp32dev
