@@ -1,0 +1,52 @@
+# PlatformIO Package Publishing Ignore List
+# Files and directories to exclude when publishing to registry
+
+# Build artifacts
+.pio/
+.pioenvs/
+.piolibdeps/
+build/
+release/
+*.zip
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+test/
+tests/
+.travis.yml
+.github/
+
+# Documentation (source)
+docs/
+
+# Scripts
+scripts/
+
+# Temporary
+*.log
+*.tmp
+tmp/
+temp/
+
+# Web builder
+tools/web_builder/*.html
+tools/web_builder/*.js
+tools/web_builder/*.css
+
+# Markdown docs (keep README, LICENSE, CHANGELOG)
+QUICK_FINISH_GUIDE.md
+
