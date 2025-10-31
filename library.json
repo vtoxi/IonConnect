@@ -1,0 +1,62 @@
+{
+  "name": "IonConnect",
+  "version": "1.0.0",
+  "description": "Modern async WiFi provisioning for ESP32/ESP8266 with captive portal, BLE, REST API, and plugin architecture",
+  "keywords": [
+    "wifi",
+    "provisioning",
+    "captive-portal",
+    "ble",
+    "iot",
+    "esp32",
+    "esp8266",
+    "async",
+    "wifi-manager",
+    "configuration"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/IonConnect.git"
+  },
+  "authors": [
+    {
+      "name": "IonConnect Team",
+      "email": "ionconnect@example.com",
+      "url": "https://github.com/yourusername"
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/yourusername/IonConnect",
+  "frameworks": ["arduino", "espidf"],
+  "platforms": ["espressif32", "espressif8266"],
+  "dependencies": [
+    {
+      "name": "ESP Async WebServer",
+      "version": "^1.2.3"
+    },
+    {
+      "name": "AsyncTCP",
+      "version": "^1.1.1",
+      "platforms": ["espressif32"]
+    },
+    {
+      "name": "ESPAsyncTCP",
+      "version": "^1.2.2",
+      "platforms": ["espressif8266"]
+    },
+    {
+      "name": "ArduinoJson",
+      "version": "^6.21.0"
+    }
+  ],
+  "export": {
+    "exclude": [
+      "test",
+      "tools",
+      "src/web/assets_src",
+      ".git",
+      ".github"
+    ]
+  }
+}
+

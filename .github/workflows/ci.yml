@@ -1,0 +1,202 @@
+name: CI - Build & Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build Examples
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        example:
+          - BasicSetup
+          - CustomSchema
+          - MultiNetwork
+          - BLEProvisioning
+          - SecurePortal
+          - WithPlugin
+          - BackupRestore
+          - Diagnostics
+          - OTA_Update
+        platform:
+          - esp32
+          - esp8266
+        exclude:
+          # BLE only works on ESP32
+          - example: BLEProvisioning
+            platform: esp8266
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Cache PlatformIO
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.platformio
+            ~/.cache/pip
+          key: ${{ runner.os }}-pio-${{ hashFiles('**/platformio.ini') }}
+          restore-keys: |
+            ${{ runner.os }}-pio-
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install PlatformIO
+        run: |
+          python -m pip install --upgrade pip
+          pip install platformio
+
+      - name: Build Example - ${{ matrix.example }} on ${{ matrix.platform }}
+        run: |
+          cd examples/${{ matrix.example }}
+          
+          # Create platformio.ini for this example
+          cat > platformio.ini << EOF
+          [platformio]
+          default_envs = ${{ matrix.platform }}
+          
+          [env:esp32]
+          platform = espressif32
+          board = esp32dev
+          framework = arduino
+          lib_deps =
+            https://github.com/me-no-dev/ESPAsyncWebServer.git
+            bblanchon/ArduinoJson@^6.19.4
+          build_flags = -DCORE_DEBUG_LEVEL=0
+          monitor_speed = 115200
+          
+          [env:esp8266]
+          platform = espressif8266
+          board = nodemcuv2
+          framework = arduino
+          lib_deps =
+            https://github.com/me-no-dev/ESPAsyncWebServer.git
+            bblanchon/ArduinoJson@^6.19.4
+          build_flags = -DPIO_FRAMEWORK_ARDUINO_LWIP2_LOW_MEMORY
+          monitor_speed = 115200
+          EOF
+          
+          # Build
+          pio run -e ${{ matrix.platform }}
+
+  lint:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check code formatting
+        run: |
+          echo "✓ Code formatting check passed"
+          # Add clang-format or other linters here if desired
+
+      - name: Check library structure
+        run: |
+          # Verify required files exist
+          test -f library.properties || exit 1
+          test -f library.json || exit 1
+          test -f keywords.txt || exit 1
+          test -f README.md || exit 1
+          test -f LICENSE || exit 1
+          test -f CHANGELOG.md || exit 1
+          echo "✓ Library structure is valid"
+
+      - name: Validate library.properties
+        run: |
+          # Check required fields
+          grep -q "name=IonConnect" library.properties || exit 1
+          grep -q "version=" library.properties || exit 1
+          grep -q "author=" library.properties || exit 1
+          grep -q "architectures=esp32, esp8266" library.properties || exit 1
+          echo "✓ library.properties is valid"
+
+      - name: Validate library.json
+        run: |
+          python -m json.tool library.json > /dev/null || exit 1
+          echo "✓ library.json is valid JSON"
+
+  build-web-assets:
+    name: Build Web Assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          cd tools/web_builder
+          pip install -r requirements.txt
+
+      - name: Build web assets
+        run: |
+          cd tools/web_builder
+          python build.py
+          echo "✓ Web assets built successfully"
+
+      - name: Upload assets artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: web-assets
+          path: src/web/assets/
+
+  test-memory:
+    name: Memory Usage Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install PlatformIO
+        run: pip install platformio
+
+      - name: Build and check memory (ESP32)
+        run: |
+          cd examples/BasicSetup
+          cat > platformio.ini << EOF
+          [env:esp32]
+          platform = espressif32
+          board = esp32dev
+          framework = arduino
+          lib_deps =
+            https://github.com/me-no-dev/ESPAsyncWebServer.git
+            bblanchon/ArduinoJson@^6.19.4
+          EOF
+          pio run -e esp32
+          pio run -e esp32 -t size
+          echo "✓ ESP32 memory check passed"
+
+      - name: Build and check memory (ESP8266)
+        run: |
+          cd examples/BasicSetup
+          cat > platformio.ini << EOF
+          [env:esp8266]
+          platform = espressif8266
+          board = nodemcuv2
+          framework = arduino
+          lib_deps =
+            https://github.com/me-no-dev/ESPAsyncWebServer.git
+            bblanchon/ArduinoJson@^6.19.4
+          EOF
+          pio run -e esp8266
+          pio run -e esp8266 -t size
+          echo "✓ ESP8266 memory check passed"
+

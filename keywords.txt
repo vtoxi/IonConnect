@@ -1,0 +1,89 @@
+#######################################
+# Syntax Coloring Map For IonConnect
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+IonConnect	KEYWORD1
+IonConnectBase	KEYWORD1
+IonConnectESP32	KEYWORD1
+IonConnectESP8266	KEYWORD1
+IonConfig	KEYWORD1
+ConfigManager	KEYWORD1
+WiFiConnectionCore	KEYWORD1
+SecurityManager	KEYWORD1
+WiFiState	KEYWORD1
+IonError	KEYWORD1
+WiFiCredential	KEYWORD1
+NetworkInfo	KEYWORD1
+ConfigField	KEYWORD1
+DiagnosticsData	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+init	KEYWORD2
+begin	KEYWORD2
+handle	KEYWORD2
+reset	KEYWORD2
+startPortal	KEYWORD2
+stopPortal	KEYWORD2
+isPortalActive	KEYWORD2
+getConfig	KEYWORD2
+setConfig	KEYWORD2
+loadConfigSchema	KEYWORD2
+exportConfig	KEYWORD2
+importConfig	KEYWORD2
+clearConfig	KEYWORD2
+connect	KEYWORD2
+disconnect	KEYWORD2
+isConnected	KEYWORD2
+getStatus	KEYWORD2
+addNetwork	KEYWORD2
+onConnect	KEYWORD2
+onDisconnect	KEYWORD2
+onConfigSaved	KEYWORD2
+onPortalStart	KEYWORD2
+onPortalTimeout	KEYWORD2
+onError	KEYWORD2
+setPortalPassword	KEYWORD2
+setAccessToken	KEYWORD2
+getDiagnostics	KEYWORD2
+enableDiagnostics	KEYWORD2
+loadSchema	KEYWORD2
+getSchemaJSON	KEYWORD2
+getFields	KEYWORD2
+validate	KEYWORD2
+connectToBest	KEYWORD2
+startScan	KEYWORD2
+getScanResults	KEYWORD2
+getRSSI	KEYWORD2
+getIP	KEYWORD2
+getSSID	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+WIFI_IDLE	LITERAL1
+WIFI_SCANNING	LITERAL1
+WIFI_CONNECTING	LITERAL1
+WIFI_CONNECTED	LITERAL1
+WIFI_RECONNECTING	LITERAL1
+WIFI_PORTAL_FALLBACK	LITERAL1
+WIFI_DISCONNECTED	LITERAL1
+ION_OK	LITERAL1
+ION_ERR_NO_CREDENTIALS	LITERAL1
+ION_ERR_WIFI_FAILED	LITERAL1
+ION_ERR_CONFIG_INVALID	LITERAL1
+ION_ERR_STORAGE_FAILED	LITERAL1
+ION_ERR_TIMEOUT	LITERAL1
+ION_ENABLE_BLE	LITERAL1
+ION_ENABLE_OTA	LITERAL1
+ION_ENABLE_DIAGNOSTICS	LITERAL1
+ION_ENABLE_PLUGINS	LITERAL1
+ION_ENABLE_MDNS	LITERAL1
+

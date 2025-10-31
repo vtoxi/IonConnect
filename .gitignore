@@ -1,0 +1,85 @@
+# IonConnect .gitignore
+
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+lib/
+.vscode/
+
+# Arduino IDE
+*.bin
+*.elf
+*.hex
+*.map
+
+# Build artifacts
+build/
+release/
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+build.log
+
+# Web builder temp files
+tools/web_builder/*.html
+tools/web_builder/*.js
+tools/web_builder/*.css
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Testing
+test_output/
+*.test
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Generated documentation
+docs/html/
+docs/latex/
+
+# Hardware testing artifacts
+hardware_test_results/
+
