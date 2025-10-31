@@ -2,6 +2,14 @@
 #include "../utils/Logger.h"
 #include "../utils/Crypto.h"
 
+#if ION_USE_LITTLEFS
+    #if ION_PLATFORM_ESP32
+        #include <LittleFS.h>
+    #elif ION_PLATFORM_ESP8266
+        #include <FS.h>
+    #endif
+#endif
+
 namespace IonConnect {
 
 const char* ConfigManager::KEY_CONFIG_DATA = "config_data";
@@ -32,12 +40,6 @@ bool ConfigManager::loadSchema(const char* jsonSchema) {
 
 bool ConfigManager::loadSchemaFromFile(const char* filepath) {
 #if ION_USE_LITTLEFS
-    #if ION_PLATFORM_ESP32
-        #include <LittleFS.h>
-    #elif ION_PLATFORM_ESP8266
-        #include <FS.h>
-    #endif
-    
     if (!LittleFS.begin()) {
         ION_LOG_E("LittleFS mount failed");
         return false;

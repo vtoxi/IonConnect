@@ -117,7 +117,7 @@ void BLEHandler::onWrite(BLECharacteristic* pCharacteristic) {
 void BLEHandler::handleConfigWrite(const String& json) {
     ION_LOG("BLE config received");
     
-    JsonDocument doc;
+    DynamicJsonDocument doc(2048);
     DeserializationError error = deserializeJson(doc, json);
     
     if (error) {
@@ -165,7 +165,7 @@ void BLEHandler::handleConfigWrite(const String& json) {
 void BLEHandler::handleControlCommand(const String& cmd) {
     ION_LOG("BLE control: %s", cmd.c_str());
     
-    JsonDocument doc;
+    DynamicJsonDocument doc(1024);
     DeserializationError error = deserializeJson(doc, cmd);
     
     if (error) {
@@ -183,11 +183,11 @@ void BLEHandler::handleControlCommand(const String& cmd) {
         delay(3000);
         
         auto networks = wifi->getScanResults();
-        JsonDocument resultDoc;
+        DynamicJsonDocument resultDoc(2048);
         JsonArray arr = resultDoc["networks"].to<JsonArray>();
         
         for (const auto& net : networks) {
-            JsonObject obj = arr.add<JsonObject>();
+            JsonObject obj = arr.createNestedObject();
             obj["ssid"] = net.ssid;
             obj["rssi"] = net.rssi;
             obj["encryption"] = net.encryption;
