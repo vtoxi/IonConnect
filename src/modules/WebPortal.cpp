@@ -223,7 +223,7 @@ void WebPortal::handleConfig(AsyncWebServerRequest* request) {
     #endif
     
     // Don't send passwords
-    JsonDocument doc;
+    DynamicJsonDocument doc(2048);
     JsonObject root = doc.to<JsonObject>();
     
     auto fields = config->getFields();
@@ -256,7 +256,7 @@ void WebPortal::handleConfigPost(AsyncWebServerRequest* request, uint8_t* data, 
         body += (char)data[i];
     }
     
-    JsonDocument doc;
+    DynamicJsonDocument doc(2048);
     DeserializationError error = deserializeJson(doc, body);
     
     if (error) {
@@ -311,11 +311,11 @@ void WebPortal::handleNetworks(AsyncWebServerRequest* request) {
     
     auto networks = wifi->getScanResults();
     
-    JsonDocument doc;
+    DynamicJsonDocument doc(2048);
     JsonArray arr = doc["networks"].to<JsonArray>();
     
     for (const auto& net : networks) {
-        JsonObject obj = arr.add<JsonObject>();
+        JsonObject obj = arr.createNestedObject();
         obj["ssid"] = net.ssid;
         obj["rssi"] = net.rssi;
         obj["encryption"] = net.encryption;
@@ -330,7 +330,7 @@ void WebPortal::handleNetworks(AsyncWebServerRequest* request) {
 }
 
 void WebPortal::handleStatus(AsyncWebServerRequest* request) {
-    JsonDocument doc;
+    DynamicJsonDocument doc(1024);
     
     doc["connected"] = wifi->isConnected();
     doc["ssid"] = wifi->getSSID();
@@ -401,7 +401,7 @@ void WebPortal::handleReboot(AsyncWebServerRequest* request) {
 }
 
 void WebPortal::handleInfo(AsyncWebServerRequest* request) {
-    JsonDocument doc;
+    DynamicJsonDocument doc(1024);
     
     #if ION_PLATFORM_ESP32
         doc["platform"] = "ESP32";

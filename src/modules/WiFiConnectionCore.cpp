@@ -125,11 +125,11 @@ std::vector<WiFiCredential> WiFiConnectionCore::getSavedNetworks() {
 bool WiFiConnectionCore::saveNetworks() {
     if (!config) return false;
     
-    JsonDocument doc;
+    DynamicJsonDocument doc(2048);
     JsonArray arr = doc.to<JsonArray>();
     
     for (const auto& net : savedNetworks) {
-        JsonObject obj = arr.add<JsonObject>();
+        JsonObject obj = arr.createNestedObject();
         obj["ssid"] = net.ssid;
         obj["pass"] = net.password;
         obj["priority"] = net.priority;
@@ -148,7 +148,7 @@ bool WiFiConnectionCore::loadNetworks() {
     if (!config) return false;
     
     String json = config->get("saved_networks", "[]");
-    JsonDocument doc;
+    DynamicJsonDocument doc(2048);
     
     DeserializationError error = deserializeJson(doc, json);
     if (error) {
