@@ -3,10 +3,9 @@
 #include "../utils/Crypto.h"
 
 #if ION_USE_LITTLEFS
-    #if ION_PLATFORM_ESP32
-        #include <LittleFS.h>
-    #elif ION_PLATFORM_ESP8266
-        #include <FS.h>
+    #include <LittleFS.h>
+    #if ION_PLATFORM_ESP8266
+        #include <FS.h>  // For File type
     #endif
 #endif
 
