@@ -222,7 +222,7 @@ bool ConfigManager::isValid() {
 }
 
 String ConfigManager::exportJSON() {
-    JsonDocument exportDoc;
+    DynamicJsonDocument exportDoc(2048);
     JsonObject root = exportDoc.to<JsonObject>();
     
     root["version"] = "1.0";
