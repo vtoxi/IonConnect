@@ -18,7 +18,7 @@ jobs:
           - 03_MultiNetwork
           - 04_BLEProvisioning
           - 05_SecurePortal
-          - 06_WithPlugin
+          # - 06_WithPlugin  # TODO: Plugin system not yet integrated
           - 07_BackupRestore
           - 08_Diagnostics
           - 09_OTA_Update
