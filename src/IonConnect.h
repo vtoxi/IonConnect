@@ -59,5 +59,10 @@ inline IonConnectBase* createInstance() {
     using IonConnectDevice = IonConnect::IonConnectESP8266;
 #endif
 
+// Bring commonly used types into global namespace for convenience
+using IonConnect::IonConfig;
+using IonConnect::WiFiState;
+using IonConnect::IonError;
+
 #endif // ION_CONNECT_H
 
