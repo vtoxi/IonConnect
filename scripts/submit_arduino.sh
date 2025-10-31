@@ -5,7 +5,7 @@
 
 set -e
 
-GITHUB_TOKEN="${GITHUB_TOKEN:-}"
+GH_PAT_TOKEN="${GH_PAT_TOKEN:-}"
 REPO_URL="https://github.com/vtoxi/IonConnect"
 LIBRARY_NAME="IonConnect"
 
@@ -23,11 +23,11 @@ echo -e "${BLUE}║                                                           �
 echo -e "${BLUE}╚═══════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
-if [ -z "$GITHUB_TOKEN" ]; then
-    echo -e "${RED}✗ Error: GITHUB_TOKEN not set${NC}"
+if [ -z "$GH_PAT_TOKEN" ]; then
+    echo -e "${RED}✗ Error: GH_PAT_TOKEN not set${NC}"
     echo ""
     echo "Usage:"
-    echo "  export GITHUB_TOKEN='your_github_pat'"
+    echo "  export GH_PAT_TOKEN='your_github_pat'"
     echo "  ./scripts/submit_arduino.sh"
     echo ""
     echo "Or use manual submission:"
@@ -37,7 +37,7 @@ fi
 
 echo -e "${YELLOW}→ Step 1: Forking arduino/library-registry...${NC}"
 FORK_RESPONSE=$(curl -s -X POST \
-  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Authorization: token $GH_PAT_TOKEN" \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/arduino/library-registry/forks)
 
@@ -46,7 +46,7 @@ FORK_OWNER=$(echo "$FORK_RESPONSE" | grep -o '"login"[[:space:]]*:[[:space:]]*"[
 if [ -z "$FORK_OWNER" ]; then
     echo -e "${YELLOW}  Fork may already exist, checking...${NC}"
     USER_RESPONSE=$(curl -s \
-      -H "Authorization: token $GITHUB_TOKEN" \
+      -H "Authorization: token $GH_PAT_TOKEN" \
       -H "Accept: application/vnd.github.v3+json" \
       https://api.github.com/user)
     FORK_OWNER=$(echo "$USER_RESPONSE" | grep -o '"login"[[:space:]]*:[[:space:]]*"[^"]*"' | head -1 | cut -d'"' -f4)
@@ -63,7 +63,7 @@ echo ""
 
 echo -e "${YELLOW}→ Step 3: Getting repositories.txt content...${NC}"
 CONTENT_RESPONSE=$(curl -s \
-  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Authorization: token $GH_PAT_TOKEN" \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/$FORK_OWNER/library-registry/contents/repositories.txt)
 
@@ -82,7 +82,7 @@ echo -e "${YELLOW}→ Step 4: Adding $REPO_URL to repositories.txt...${NC}"
 
 # Decode content, add new line, encode back
 CURRENT_CONTENT=$(curl -s \
-  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Authorization: token $GH_PAT_TOKEN" \
   https://raw.githubusercontent.com/$FORK_OWNER/library-registry/main/repositories.txt)
 NEW_CONTENT="${CURRENT_CONTENT}
 ${REPO_URL}"
@@ -95,7 +95,7 @@ echo -e "${YELLOW}→ Step 5: Creating branch: $BRANCH_NAME...${NC}"
 
 # Get main branch SHA
 MAIN_REF=$(curl -s \
-  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Authorization: token $GH_PAT_TOKEN" \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/$FORK_OWNER/library-registry/git/refs/heads/main)
 
@@ -103,7 +103,7 @@ MAIN_SHA=$(echo "$MAIN_REF" | grep -o '"sha"[[:space:]]*:[[:space:]]*"[^"]*"' | 
 
 # Create new branch
 curl -s -X POST \
-  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Authorization: token $GH_PAT_TOKEN" \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/$FORK_OWNER/library-registry/git/refs \
   -d "{\"ref\":\"refs/heads/$BRANCH_NAME\",\"sha\":\"$MAIN_SHA\"}" > /dev/null
@@ -114,7 +114,7 @@ echo ""
 echo -e "${YELLOW}→ Step 6: Updating repositories.txt...${NC}"
 
 UPDATE_RESPONSE=$(curl -s -X PUT \
-  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Authorization: token $GH_PAT_TOKEN" \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/$FORK_OWNER/library-registry/contents/repositories.txt \
   -d "{
@@ -157,7 +157,7 @@ This library provides a modern replacement for legacy WiFiManager with async ope
 - [x] Examples compile for target architectures"
 
 PR_RESPONSE=$(curl -s -X POST \
-  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Authorization: token $GH_PAT_TOKEN" \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/arduino/library-registry/pulls \
   -d "{
