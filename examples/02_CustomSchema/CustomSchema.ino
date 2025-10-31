@@ -10,7 +10,7 @@
 
 #include <IonConnect.h>
 
-IonConnect ion;
+IonConnectDevice ion;
 
 // Define custom configuration schema
 const char* customSchema = R"json({

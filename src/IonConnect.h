@@ -52,11 +52,11 @@ inline IonConnectBase* createInstance() {
 
 } // namespace IonConnect
 
-// Convenience typedef for user code
+// Convenience typedef for user code  
 #if ION_PLATFORM_ESP32
-    typedef IonConnect::IonConnectESP32 IonConnect;
+    using IonConnectDevice = IonConnect::IonConnectESP32;
 #elif ION_PLATFORM_ESP8266
-    typedef IonConnect::IonConnectESP8266 IonConnect;
+    using IonConnectDevice = IonConnect::IonConnectESP8266;
 #endif
 
 #endif // ION_CONNECT_H

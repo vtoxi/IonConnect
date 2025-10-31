@@ -19,7 +19,7 @@
 #error "This example requires ESP32 (BLE not available on ESP8266)"
 #endif
 
-IonConnect ion;
+IonConnectDevice ion;
 
 void setup() {
     Serial.begin(115200);

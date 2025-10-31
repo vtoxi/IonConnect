@@ -2,6 +2,7 @@
 #define SECURITY_MANAGER_H
 
 #include <Arduino.h>
+#include <map>
 #include "../core/IonTypes.h"
 
 #if ION_PLATFORM_ESP32

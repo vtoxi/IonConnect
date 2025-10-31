@@ -22,7 +22,7 @@
 #include <IonConnect.h>
 
 // Create IonConnect instance
-IonConnectDevice ion;
+IonConnect ion;
 
 void setup() {
     Serial.begin(115200);

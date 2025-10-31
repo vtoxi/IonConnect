@@ -10,7 +10,7 @@
 
 #include <IonConnect.h>
 
-IonConnect ion;
+IonConnectDevice ion;
 
 // Simple status plugin example
 class StatusPlugin : public IonPlugin {

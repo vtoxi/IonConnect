@@ -13,7 +13,7 @@
 
 #include <IonConnect.h>
 
-IonConnect ion;
+IonConnectDevice ion;
 
 // Serial commands
 void processSerialCommand() {

@@ -14,7 +14,7 @@
 
 #include <IonConnect.h>
 
-IonConnect ion;
+IonConnectDevice ion;
 
 // Security configuration
 const char* PORTAL_PASSWORD = "admin123";           // Portal access password

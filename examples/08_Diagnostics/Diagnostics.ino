@@ -14,7 +14,7 @@
 
 #include <IonConnect.h>
 
-IonConnect ion;
+IonConnectDevice ion;
 
 void printDiagnostics() {
     #if ION_ENABLE_DIAGNOSTICS
