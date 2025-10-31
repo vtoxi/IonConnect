@@ -83,7 +83,8 @@ platform = espressif32
 board = esp32dev
 framework = arduino
 lib_deps =
-    https://github.com/me-no-dev/ESPAsyncWebServer.git
+    me-no-dev/ESP Async WebServer@^1.2.4
+    me-no-dev/AsyncTCP@^1.1.4
     bblanchon/ArduinoJson@^6.19.4
 build_flags = -DCORE_DEBUG_LEVEL=0
 monitor_speed = 115200
@@ -93,7 +94,8 @@ platform = espressif8266
 board = nodemcuv2
 framework = arduino
 lib_deps =
-    https://github.com/me-no-dev/ESPAsyncWebServer.git
+    me-no-dev/ESP Async WebServer@^1.2.4
+    me-no-dev/ESPAsyncTCP@^1.2.4
     bblanchon/ArduinoJson@^6.19.4
 build_flags = -DPIO_FRAMEWORK_ARDUINO_LWIP2_LOW_MEMORY
 monitor_speed = 115200
