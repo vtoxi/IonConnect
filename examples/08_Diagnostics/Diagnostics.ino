@@ -16,6 +16,11 @@
 
 IonConnectDevice ion;
 
+// Forward declarations
+void printDiagnostics();
+void printUptime(uint32_t seconds);
+void monitorMemory();
+
 void printDiagnostics() {
     #if ION_ENABLE_DIAGNOSTICS
     Serial.println("\n========================================");
