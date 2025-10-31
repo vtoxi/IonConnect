@@ -13,21 +13,21 @@ jobs:
     strategy:
       matrix:
         example:
-          - BasicSetup
-          - CustomSchema
-          - MultiNetwork
-          - BLEProvisioning
-          - SecurePortal
-          - WithPlugin
-          - BackupRestore
-          - Diagnostics
-          - OTA_Update
+          - 01_BasicSetup
+          - 02_CustomSchema
+          - 03_MultiNetwork
+          - 04_BLEProvisioning
+          - 05_SecurePortal
+          - 06_WithPlugin
+          - 07_BackupRestore
+          - 08_Diagnostics
+          - 09_OTA_Update
         platform:
           - esp32
           - esp8266
         exclude:
           # BLE only works on ESP32
-          - example: BLEProvisioning
+          - example: 04_BLEProvisioning
             platform: esp8266
 
     steps:
@@ -58,7 +58,8 @@ jobs:
         run: |
           cd examples/${{ matrix.example }}
           
-          # Create platformio.ini for this example
+          # Use existing platformio.ini (already present)
+          # Build with the library source from parent directory
           cat > platformio.ini << EOF
           [platformio]
           default_envs = ${{ matrix.platform }}
@@ -116,7 +117,7 @@ jobs:
           grep -q "name=IonConnect" library.properties || exit 1
           grep -q "version=" library.properties || exit 1
           grep -q "author=" library.properties || exit 1
-          grep -q "architectures=esp32, esp8266" library.properties || exit 1
+          grep -q "architectures=esp32,esp8266" library.properties || exit 1
           echo "✓ library.properties is valid"
 
       - name: Validate library.json
@@ -170,7 +171,7 @@ jobs:
 
       - name: Build and check memory (ESP32)
         run: |
-          cd examples/BasicSetup
+          cd examples/01_BasicSetup
           cat > platformio.ini << EOF
           [env:esp32]
           platform = espressif32
@@ -186,7 +187,7 @@ jobs:
 
       - name: Build and check memory (ESP8266)
         run: |
-          cd examples/BasicSetup
+          cd examples/01_BasicSetup
           cat > platformio.ini << EOF
           [env:esp8266]
           platform = espressif8266
