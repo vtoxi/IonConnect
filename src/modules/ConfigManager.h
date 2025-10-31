@@ -50,8 +50,8 @@ public:
     
 private:
     StorageProvider* storage;
-    JsonDocument schemaDoc;
-    JsonDocument configDoc;
+    DynamicJsonDocument schemaDoc;
+    DynamicJsonDocument configDoc;
     std::vector<ConfigField*> fields;
     bool schemaLoaded;
     bool configLoaded;

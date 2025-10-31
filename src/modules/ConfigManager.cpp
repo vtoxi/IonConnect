@@ -8,7 +8,7 @@ const char* ConfigManager::KEY_CONFIG_DATA = "config_data";
 const char* ConfigManager::KEY_SCHEMA_VERSION = "schema_ver";
 
 ConfigManager::ConfigManager(StorageProvider* storage) 
-    : storage(storage), schemaLoaded(false), configLoaded(false) {
+    : storage(storage), schemaDoc(4096), configDoc(2048), schemaLoaded(false), configLoaded(false) {
 }
 
 ConfigManager::~ConfigManager() {

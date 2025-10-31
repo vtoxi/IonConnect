@@ -70,13 +70,11 @@ void loop() {
     // Your application code here
     // This runs whether connected or in portal mode
     
-    // Example: Blink LED when connected (if LED_BUILTIN is defined)
-    #ifdef LED_BUILTIN
+    // Example: Blink LED when connected
     static uint32_t lastBlink = 0;
     if (ion.isConnected() && millis() - lastBlink > 1000) {
         lastBlink = millis();
         digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
     }
-    #endif
 }
 
