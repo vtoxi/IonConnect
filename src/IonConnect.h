@@ -61,7 +61,8 @@ inline IonConnectBase* createInstance() {
 
 // Bring commonly used types into global namespace for convenience
 using IonConnect::IonConfig;
-using IonConnect::WiFiState;
+// Note: WiFiState not exposed globally due to conflicts with ESP8266WiFi library
+// Use IonConnect::WiFiState instead
 using IonConnect::IonError;
 
 #endif // ION_CONNECT_H
