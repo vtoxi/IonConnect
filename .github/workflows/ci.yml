@@ -58,11 +58,21 @@ jobs:
         run: |
           cd examples/${{ matrix.example }}
           
+          # Create src directory and copy .ino file as main.cpp for PlatformIO
+          mkdir -p src
+          INO_FILE=$(find . -maxdepth 1 -name "*.ino" | head -1)
+          if [ -n "$INO_FILE" ]; then
+            cp "$INO_FILE" "src/main.cpp"
+          fi
+          
           # Use existing platformio.ini (already present)
           # Build with the library source from parent directory
           cat > platformio.ini << EOF
           [platformio]
           default_envs = ${{ matrix.platform }}
+          
+          [env]
+          lib_extra_dirs = ../..
           
           [env:esp32]
           platform = espressif32
@@ -70,6 +80,7 @@ jobs:
           framework = arduino
           lib_deps =
             https://github.com/me-no-dev/ESPAsyncWebServer.git
+            https://github.com/me-no-dev/AsyncTCP.git
             bblanchon/ArduinoJson@^6.19.4
           build_flags = -DCORE_DEBUG_LEVEL=0
           monitor_speed = 115200
@@ -80,6 +91,7 @@ jobs:
           framework = arduino
           lib_deps =
             https://github.com/me-no-dev/ESPAsyncWebServer.git
+            https://github.com/me-no-dev/ESPAsyncTCP.git
             bblanchon/ArduinoJson@^6.19.4
           build_flags = -DPIO_FRAMEWORK_ARDUINO_LWIP2_LOW_MEMORY
           monitor_speed = 115200
@@ -172,13 +184,22 @@ jobs:
       - name: Build and check memory (ESP32)
         run: |
           cd examples/01_BasicSetup
+          
+          # Create src directory and copy .ino file
+          mkdir -p src
+          cp BasicSetup.ino src/main.cpp
+          
           cat > platformio.ini << EOF
+          [env]
+          lib_extra_dirs = ../..
+          
           [env:esp32]
           platform = espressif32
           board = esp32dev
           framework = arduino
           lib_deps =
             https://github.com/me-no-dev/ESPAsyncWebServer.git
+            https://github.com/me-no-dev/AsyncTCP.git
             bblanchon/ArduinoJson@^6.19.4
           EOF
           pio run -e esp32
@@ -188,13 +209,22 @@ jobs:
       - name: Build and check memory (ESP8266)
         run: |
           cd examples/01_BasicSetup
+          
+          # Ensure src directory exists (should already be from ESP32 build)
+          mkdir -p src
+          cp BasicSetup.ino src/main.cpp
+          
           cat > platformio.ini << EOF
+          [env]
+          lib_extra_dirs = ../..
+          
           [env:esp8266]
           platform = espressif8266
           board = nodemcuv2
           framework = arduino
           lib_deps =
             https://github.com/me-no-dev/ESPAsyncWebServer.git
+            https://github.com/me-no-dev/ESPAsyncTCP.git
             bblanchon/ArduinoJson@^6.19.4
           EOF
           pio run -e esp8266
