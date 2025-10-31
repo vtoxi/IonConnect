@@ -5,6 +5,20 @@ All notable changes to IonConnect will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2025-10-31
+
+### Fixed
+- Fixed `DiagnosticsData` namespace qualification in 08_Diagnostics example
+- Added `intelhex` Python dependency to GitHub Actions CI for ESP32 builds
+- Resolved compilation errors in example sketches
+
+### Changed
+- Temporarily excluded 06_WithPlugin example from CI builds (plugin system integration pending)
+
+### Technical
+- All 15 example builds verified and passing on both ESP32 and ESP8266 platforms
+- Improved CI stability and reliability
+
 ## [1.0.1] - 2025-10-31
 
 ### Added
@@ -140,6 +154,7 @@ This library is inspired by and improves upon WiFiManager by tzapu, bringing mod
 
 ---
 
+[1.0.2]: https://github.com/vtoxi/IonConnect/releases/tag/v1.0.2
 [1.0.1]: https://github.com/vtoxi/IonConnect/releases/tag/v1.0.1
 [1.0.0]: https://github.com/vtoxi/IonConnect/releases/tag/v1.0.0
 
