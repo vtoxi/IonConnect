@@ -235,7 +235,7 @@ String ConfigManager::exportJSON() {
 }
 
 bool ConfigManager::importJSON(const String& json) {
-    JsonDocument importDoc;
+    DynamicJsonDocument importDoc(2048);
     
     DeserializationError error = deserializeJson(importDoc, json);
     if (error) {
