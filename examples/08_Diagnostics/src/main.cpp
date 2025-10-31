@@ -27,7 +27,7 @@ void printDiagnostics() {
     Serial.println("  📊 System Diagnostics");
     Serial.println("========================================");
     
-    IonConnect::DiagnosticsData diag = ion.getDiagnostics();
+    DiagnosticsData diag = ion.getDiagnostics();
     
     // Memory Information
     Serial.println("\n💾 Memory:");
